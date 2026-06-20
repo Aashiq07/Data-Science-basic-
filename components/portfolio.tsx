@@ -5,8 +5,8 @@ import Image from "next/image"
 
 const clients = [
   { name: "Zion Planners", logo: "/clients/zion-planners.png" },
-  { name: "Tempt", logo: "/clients/tempt.jpeg" },
-  { name: "SOHO The Burger Co", logo: "/clients/soho-burger.png" },
+  { name: "Tempt", logo: "/clients/tempt.jpeg", fill: true },
+  { name: "SOHO The Burger Co", logo: "/clients/soho-burger.png", fill: true },
   { name: "Twisty Tails", logo: "/clients/twisty-tails.jpeg" },
   { name: "Thamil Mithiran", logo: "/clients/thamil-mithiran.png" },
   { name: "Dream Fit Designing", logo: "/clients/dream-fit.png" },
@@ -57,14 +57,16 @@ export function Portfolio() {
           {[...clients, ...clients].map((client, index) => (
             <div
               key={`${client.name}-${index}`}
-              className="flex h-40 w-40 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-white p-3 shadow-sm"
+              className={`flex h-40 w-40 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-white shadow-sm ${
+                client.fill ? "" : "p-3"
+              }`}
             >
               <Image
                 src={client.logo || "/placeholder.svg"}
                 alt={`${client.name} logo`}
                 width={160}
                 height={160}
-                className="h-full w-full object-contain"
+                className={`h-full w-full ${client.fill ? "scale-105 object-cover" : "object-contain"}`}
               />
             </div>
           ))}
