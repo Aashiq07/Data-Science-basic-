@@ -13,6 +13,8 @@ type Client = {
   bg?: "white" | "black"
   // extra zoom applied to fill logos so their own background reaches the edges
   zoom?: string
+  // when true, the logo is shown as-is with no circle, border, or background
+  bare?: boolean
 }
 
 const clients: Client[] = [
@@ -22,10 +24,10 @@ const clients: Client[] = [
   { name: "Twisty Tails", logo: "/clients/twisty-tails.jpeg" },
   { name: "Thamil Mithiran", logo: "/clients/thamil-mithiran.png" },
   { name: "Dream Fit Designing", logo: "/clients/dream-fit.png" },
-  { name: "Wangs Kitchen", logo: "/clients/wangs-kitchen.jpeg" },
+  { name: "Wangs Kitchen", logo: "/clients/wangs-kitchen.jpeg", bare: true },
   { name: "Chennai Mandala Seithigal", logo: "/clients/chennai-seithigal.jpeg" },
   { name: "KNK Eshkol", logo: "/clients/knk-eshkol.jpeg", fill: true, bg: "black", zoom: "scale-[1.08]" },
-  { name: "Junior Kuppanna", logo: "/clients/junior-kuppanna.png" },
+  { name: "Junior Kuppanna", logo: "/clients/junior-kuppanna.png", bare: true },
 ]
 
 export function Portfolio() {
@@ -66,24 +68,39 @@ export function Portfolio() {
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 40, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
         >
-          {[...clients, ...clients].map((client, index) => (
-            <div
-              key={`${client.name}-${index}`}
-              className={`flex h-40 w-40 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border shadow-sm ${
-                client.bg === "black" ? "bg-black" : "bg-white"
-              } ${client.fill ? "" : "p-3"}`}
-            >
-              <Image
-                src={client.logo || "/placeholder.svg"}
-                alt={`${client.name} logo`}
-                width={160}
-                height={160}
-                className={`h-full w-full ${
-                  client.fill ? `object-cover ${client.zoom ?? "scale-105"}` : "object-contain"
-                }`}
-              />
-            </div>
-          ))}
+          {[...clients, ...clients].map((client, index) =>
+            client.bare ? (
+              <div
+                key={`${client.name}-${index}`}
+                className="flex h-40 w-40 shrink-0 items-center justify-center"
+              >
+                <Image
+                  src={client.logo || "/placeholder.svg"}
+                  alt={`${client.name} logo`}
+                  width={160}
+                  height={160}
+                  className="h-full w-full object-contain"
+                />
+              </div>
+            ) : (
+              <div
+                key={`${client.name}-${index}`}
+                className={`flex h-40 w-40 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border shadow-sm ${
+                  client.bg === "black" ? "bg-black" : "bg-white"
+                } ${client.fill ? "" : "p-3"}`}
+              >
+                <Image
+                  src={client.logo || "/placeholder.svg"}
+                  alt={`${client.name} logo`}
+                  width={160}
+                  height={160}
+                  className={`h-full w-full ${
+                    client.fill ? `object-cover ${client.zoom ?? "scale-105"}` : "object-contain"
+                  }`}
+                />
+              </div>
+            ),
+          )}
         </motion.div>
       </div>
     </section>
