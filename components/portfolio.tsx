@@ -3,16 +3,28 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 
-const clients = [
+type Client = {
+  name: string
+  logo: string
+  // when true, the logo fills the whole circle (used for logos that already
+  // include their own circular/solid background)
+  fill?: boolean
+  // background color of the circle container
+  bg?: "white" | "black"
+  // extra zoom applied to fill logos so their own background reaches the edges
+  zoom?: string
+}
+
+const clients: Client[] = [
   { name: "Zion Planners", logo: "/clients/zion-planners.png" },
-  { name: "Tempt", logo: "/clients/tempt.jpeg", fill: true },
-  { name: "SOHO The Burger Co", logo: "/clients/soho-burger.png", fill: true },
+  { name: "Tempt", logo: "/clients/tempt.jpeg", fill: true, bg: "white", zoom: "scale-[1.4]" },
+  { name: "SOHO The Burger Co", logo: "/clients/soho-burger.png", fill: true, bg: "black", zoom: "scale-[1.45]" },
   { name: "Twisty Tails", logo: "/clients/twisty-tails.jpeg" },
   { name: "Thamil Mithiran", logo: "/clients/thamil-mithiran.png" },
   { name: "Dream Fit Designing", logo: "/clients/dream-fit.png" },
   { name: "Wangs Kitchen", logo: "/clients/wangs-kitchen.jpeg" },
   { name: "Chennai Mandala Seithigal", logo: "/clients/chennai-seithigal.jpeg" },
-  { name: "KNK Eshkol", logo: "/clients/knk-eshkol.jpeg" },
+  { name: "KNK Eshkol", logo: "/clients/knk-eshkol.jpeg", fill: true, bg: "black", zoom: "scale-[1.08]" },
   { name: "Junior Kuppanna", logo: "/clients/junior-kuppanna.png" },
 ]
 
@@ -57,16 +69,18 @@ export function Portfolio() {
           {[...clients, ...clients].map((client, index) => (
             <div
               key={`${client.name}-${index}`}
-              className={`flex h-40 w-40 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-white shadow-sm ${
-                client.fill ? "" : "p-3"
-              }`}
+              className={`flex h-40 w-40 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border shadow-sm ${
+                client.bg === "black" ? "bg-black" : "bg-white"
+              } ${client.fill ? "" : "p-3"}`}
             >
               <Image
                 src={client.logo || "/placeholder.svg"}
                 alt={`${client.name} logo`}
                 width={160}
                 height={160}
-                className={`h-full w-full ${client.fill ? "scale-105 object-cover" : "object-contain"}`}
+                className={`h-full w-full ${
+                  client.fill ? `object-cover ${client.zoom ?? "scale-105"}` : "object-contain"
+                }`}
               />
             </div>
           ))}
