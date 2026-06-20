@@ -4,18 +4,16 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 
 const clients = [
-  { name: "Coastal Cuisine", logo: "/clients/client-1.png" },
-  { name: "Paradise Resort", logo: "/clients/client-2.png" },
-  { name: "Future Academy", logo: "/clients/client-3.png" },
-  { name: "Fitness Influencer", logo: "/clients/client-4.png" },
-  { name: "Product Launch", logo: "/placeholder.svg?height=120&width=120" },
-  { name: "Tech Startup", logo: "/placeholder.svg?height=120&width=120" },
-  { name: "Brew Cafe", logo: "/placeholder.svg?height=120&width=120" },
-  { name: "Serene Spa", logo: "/placeholder.svg?height=120&width=120" },
-  { name: "Urban Eats", logo: "/placeholder.svg?height=120&width=120" },
-  { name: "Luxe Travel", logo: "/placeholder.svg?height=120&width=120" },
-  { name: "Bright Minds", logo: "/placeholder.svg?height=120&width=120" },
-  { name: "Pulse Media", logo: "/placeholder.svg?height=120&width=120" },
+  { name: "Zion Planners", logo: "/clients/zion-planners.png" },
+  { name: "Tempt", logo: "/clients/tempt.jpeg" },
+  { name: "SOHO The Burger Co", logo: "/clients/soho-burger.png" },
+  { name: "Twisty Tails", logo: "/clients/twisty-tails.jpeg" },
+  { name: "Thamil Mithiran", logo: "/clients/thamil-mithiran.png" },
+  { name: "Dream Fit Designing", logo: "/clients/dream-fit.png" },
+  { name: "Wangs Kitchen", logo: "/clients/wangs-kitchen.jpeg" },
+  { name: "Chennai Mandala Seithigal", logo: "/clients/chennai-seithigal.jpeg" },
+  { name: "KNK Eshkol", logo: "/clients/knk-eshkol.jpeg" },
+  { name: "Junior Kuppanna", logo: "/clients/junior-kuppanna.png" },
 ]
 
 export function Portfolio() {
@@ -59,14 +57,14 @@ export function Portfolio() {
           {[...clients, ...clients].map((client, index) => (
             <div
               key={`${client.name}-${index}`}
-              className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-card"
+              className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-white p-4 shadow-sm"
             >
               <Image
                 src={client.logo || "/placeholder.svg"}
                 alt={`${client.name} logo`}
                 width={120}
                 height={120}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
               />
             </div>
           ))}
