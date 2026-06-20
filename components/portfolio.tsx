@@ -13,6 +13,8 @@ type Client = {
   bg?: "white" | "black"
   // extra zoom applied to fill logos so their own background reaches the edges
   zoom?: string
+  // when true, the logo is shown as-is with no circle, border, or background
+  bare?: boolean
 }
 
 const clients: Client[] = [
@@ -22,10 +24,10 @@ const clients: Client[] = [
   { name: "Twisty Tails", logo: "/clients/twisty-tails.jpeg" },
   { name: "Thamil Mithiran", logo: "/clients/thamil-mithiran.png" },
   { name: "Dream Fit Designing", logo: "/clients/dream-fit.png" },
-  { name: "Wangs Kitchen", logo: "/clients/wangs-kitchen.jpeg" },
+  { name: "Wangs Kitchen", logo: "/clients/wangs-kitchen.jpeg", bare: true },
   { name: "Chennai Mandala Seithigal", logo: "/clients/chennai-seithigal.jpeg" },
   { name: "KNK Eshkol", logo: "/clients/knk-eshkol.jpeg", fill: true, bg: "black", zoom: "scale-[1.08]" },
-  { name: "Junior Kuppanna", logo: "/clients/junior-kuppanna.png" },
+  { name: "Junior Kuppanna", logo: "/clients/junior-kuppanna.png", bare: true },
 ]
 
 export function Portfolio() {
