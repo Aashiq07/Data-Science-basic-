@@ -57,13 +57,13 @@ export function Portfolio() {
           {[...clients, ...clients].map((client, index) => (
             <div
               key={`${client.name}-${index}`}
-              className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-white p-4 shadow-sm"
+              className="flex h-40 w-40 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-white p-3 shadow-sm"
             >
               <Image
                 src={client.logo || "/placeholder.svg"}
                 alt={`${client.name} logo`}
-                width={120}
-                height={120}
+                width={160}
+                height={160}
                 className="h-full w-full object-contain"
               />
             </div>
