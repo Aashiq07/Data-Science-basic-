@@ -1,7 +1,6 @@
 "use server"
 
 import { createClient } from "@/lib/supabase/server"
-import { sendSubmissionEmail } from "@/lib/email/send-submission"
 
 export type ContactState = {
   success: boolean
@@ -39,10 +38,6 @@ export async function submitContact(
         error: "Something went wrong. Please try again.",
       }
     }
-
-    // Notify the owner(s) by email. This never blocks the submission:
-    // if the email fails, the data is still safely saved in the database.
-    await sendSubmissionEmail({ name, email, phone, business, message })
 
     return { success: true, error: null }
   } catch (err) {
