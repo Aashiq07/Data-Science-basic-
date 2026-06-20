@@ -68,24 +68,39 @@ export function Portfolio() {
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 40, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
         >
-          {[...clients, ...clients].map((client, index) => (
-            <div
-              key={`${client.name}-${index}`}
-              className={`flex h-40 w-40 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border shadow-sm ${
-                client.bg === "black" ? "bg-black" : "bg-white"
-              } ${client.fill ? "" : "p-3"}`}
-            >
-              <Image
-                src={client.logo || "/placeholder.svg"}
-                alt={`${client.name} logo`}
-                width={160}
-                height={160}
-                className={`h-full w-full ${
-                  client.fill ? `object-cover ${client.zoom ?? "scale-105"}` : "object-contain"
-                }`}
-              />
-            </div>
-          ))}
+          {[...clients, ...clients].map((client, index) =>
+            client.bare ? (
+              <div
+                key={`${client.name}-${index}`}
+                className="flex h-40 w-40 shrink-0 items-center justify-center"
+              >
+                <Image
+                  src={client.logo || "/placeholder.svg"}
+                  alt={`${client.name} logo`}
+                  width={160}
+                  height={160}
+                  className="h-full w-full object-contain"
+                />
+              </div>
+            ) : (
+              <div
+                key={`${client.name}-${index}`}
+                className={`flex h-40 w-40 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border shadow-sm ${
+                  client.bg === "black" ? "bg-black" : "bg-white"
+                } ${client.fill ? "" : "p-3"}`}
+              >
+                <Image
+                  src={client.logo || "/placeholder.svg"}
+                  alt={`${client.name} logo`}
+                  width={160}
+                  height={160}
+                  className={`h-full w-full ${
+                    client.fill ? `object-cover ${client.zoom ?? "scale-105"}` : "object-contain"
+                  }`}
+                />
+              </div>
+            ),
+          )}
         </motion.div>
       </div>
     </section>

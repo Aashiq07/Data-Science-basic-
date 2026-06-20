@@ -2,11 +2,11 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+import Image from "next/image"
 import {
   Lightbulb,
   Target,
   TrendingUp,
-  Users,
   Video,
   Code,
 } from "lucide-react"
@@ -106,20 +106,27 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/20 to-primary/5 border border-border overflow-hidden relative">
-              {/* Decorative elements */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-64 h-64 rounded-full bg-primary/10 blur-3xl" />
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <Users className="h-20 w-20 text-primary mx-auto mb-4" />
-                  <span className="text-2xl font-bold">Founded by</span>
-                  <br />
-                  <span className="text-xl text-primary font-semibold">
-                    Jones Asir
-                  </span>
-                </div>
+            <div className="aspect-square rounded-3xl border border-border overflow-hidden relative">
+              {/* Owner photo */}
+              <Image
+                src="/owner/jones-asir.jpeg"
+                alt="Jones Asir, founder of Rare Drop"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+                priority
+              />
+              {/* Gradient overlay for text legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+              {/* Caption */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
+                <span className="text-lg font-medium text-muted-foreground">
+                  Founded by
+                </span>
+                <br />
+                <span className="text-2xl text-primary font-bold">
+                  Jones Asir
+                </span>
               </div>
               {/* Corner accents */}
               <div className="absolute top-4 left-4 w-20 h-20 border-l-2 border-t-2 border-primary/30 rounded-tl-2xl" />
